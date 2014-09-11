@@ -9,6 +9,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
+gem 'bcrypt-ruby', '~> 3.1.2'
 
 group :development do
   gem 'better_errors'
