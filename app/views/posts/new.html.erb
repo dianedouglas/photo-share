@@ -1,0 +1,7 @@
+<h1>New Post</h1>
+
+<%= form_for @post, :html => { :multipart => true } do |form| %>
+  <%= form.file_field :image_upload %>
+  <%= form.text_field :description %>
+  <%= submit_tag "Post", name: nil %>
+<% end %>
