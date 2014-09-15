@@ -1,1 +1,9 @@
-<h1>Posts from <%=current_user.email%></h1>
+<% if current_user %>
+<h1>Pictures from you: <%=current_user.email%></h1>
+<% else %>
+<h1>Pictures of You: View All Pictures</h1>
+<% end %>
+
+<% @posts.each do |post| %>
+  <%= image_tag post.image_upload.url %>
+<% end %>
