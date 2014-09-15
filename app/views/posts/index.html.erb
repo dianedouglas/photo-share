@@ -1,9 +1,11 @@
 <% if current_user %>
 <h1>Pictures from you: <%=current_user.email%></h1>
+  <%= link_to "Post another Photo!", new_user_post_path(current_user.id), :class => "btn btn-success" %>
 <% else %>
 <h1>Pictures of You: View All Pictures</h1>
 <% end %>
-
+<br>
+<hr>
 <% @posts.each do |post| %>
   <%= image_tag post.image_upload.url %>
 <% end %>
