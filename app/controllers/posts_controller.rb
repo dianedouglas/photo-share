@@ -9,7 +9,7 @@ class PostsController <  ApplicationController
     # @post.user_id = current_user.id
     # @post = current_user.posts.new(post_params)
     if @post.save
-      redirect_to root_path
+      redirect_to user_posts_path(current_user.id)
       flash[:notice] = "Thanks for posting!"
     else
       render 'new'
