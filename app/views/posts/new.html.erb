@@ -1,5 +1,7 @@
 <h1>New Post</h1>
 
+<%= render 'layouts/errors', :object => @post %>
+
 <%= form_for @post, :html => { :multipart => true } do |form| %>
 <div class="form-group">
   <%= form.label :fname, "Pick a photo:", class: "control-label" %>

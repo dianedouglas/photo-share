@@ -1,20 +1,21 @@
 <h1> Sign Up</h1>
 
-  <%= render('layouts/errors', :object => @user) %>
+<%= render('layouts/errors', :object => @user) %>
+
 <%= form_for @user do |form| %>
 
-  <div class="field">
-    <%= form.label :email %> <br />
-    <%= form.text_field :email %>
+  <div class="field form-group">
+    <%= form.label :email, class: "control-label" %> <br />
+    <%= form.email_field :email %>
   </div>
 
-  <div class="field">
-    <%= form.label :password %> <br />
+  <div class="field form-group">
+    <%= form.label :password, class: "control-label" %> <br />
     <%= form.password_field :password %>
   </div>
 
-  <div class="field">
-    <%= form.label :password_confirmation %> <br />
+  <div class="field form-group">
+    <%= form.label :password_confirmation, class: "control-label" %> <br />
     <%= form.password_field :password_confirmation %>
   </div>
   <br>
