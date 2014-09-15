@@ -6,7 +6,8 @@ class PostsController <  ApplicationController
 
   def create
     @post = Post.new(post_params)
-    @post.user_id = current_user.id
+    # @post.user_id = current_user.id
+    # @post = current_user.posts.new(post_params)
     if @post.save
       redirect_to root_path
       flash[:notice] = "Thanks for posting!"
@@ -26,7 +27,7 @@ class PostsController <  ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:image_upload, :description)
+    params.require(:post).permit(:image_upload, :description).merge({user_id: current_user.id})
   end
 
 end
