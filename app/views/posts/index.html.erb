@@ -8,4 +8,5 @@
 <hr>
 <% @posts.each do |post| %>
   <%= image_tag post.image_upload.url %>
+  <h4 class="description"><%= post.description %></h4>
 <% end %>
