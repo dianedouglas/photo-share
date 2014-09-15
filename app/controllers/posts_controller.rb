@@ -14,6 +14,15 @@ class PostsController <  ApplicationController
     end
   end
 
+  def index
+    if params[:user_id]
+      @user = User.find(params[:user_id])
+      @posts = @user.posts
+    else
+      @posts = Post.all
+    end
+  end
+
   private
   def post_params
     params.require(:post).permit(:image_upload, :description)
