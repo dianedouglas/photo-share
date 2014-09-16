@@ -11,6 +11,7 @@ gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
 gem 'bcrypt'
 gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
+gem 'capybara'
 
 group :development do
   gem 'better_errors'
