@@ -19,4 +19,21 @@ describe "clicking links on the navbar" do
     click_link 'Log In'
     expect(page).to have_content "Log In Email Password"
   end
+
+  it "should not show you the Profile link if the user is not signed in." do
+    visit '/'
+    expect(page).to have_no_content "Profile"
+    expect(page).to have_no_content "Post a Photo"
+  end
+
+  it "should not show you the Profile link if the user is not signed in." do
+    visit 'login'
+    user = User.create(:email => 'user@example.com', :password => 'password', :password_confirmation => 'password')
+    fill_in 'Email', :with => 'user@example.com'
+    fill_in 'Password', :with => 'password'
+    click_button 'Log In'
+    visit '/'
+    expect(page).to have_content "Profile"
+    expect(page).to have_content "Post a Photo"
+  end
 end
