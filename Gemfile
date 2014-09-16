@@ -12,6 +12,7 @@ gem 'autoprefixer-rails'
 gem 'bcrypt'
 gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
 gem 'capybara'
+gem 'launchy'
 
 group :development do
   gem 'better_errors'
