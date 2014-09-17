@@ -2,6 +2,12 @@
   font-family: "Brush Script MT", cursive;
 }
 
+.title-design {
+	font-family: Optima, Segoe, "Segoe UI", Candara, Calibri, Arial, sans-serif;
+	font-style: italic;
+	font-size: 120%;
+}
+
 img {
   max-height: 600px;
   max-width: 600px;

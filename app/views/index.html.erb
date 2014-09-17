@@ -1,9 +1,17 @@
 <div class="title-design">
-  <h4>I've been staring so long at these... </h4>
-  <h1>Pictures of You</h1>
-  <h4>That I almost believed that they were real...</h4>
+  <p>Share your pictures with the world!  Pick your favorites to show on your profile!</p>
 </div>
 
 <% if current_user %>
   <%= link_to "Post a Photo!", new_user_post_path(current_user.id), :class => "btn btn-success" %>
 <% end %>
+
+<hr>
+
+<% @post = Post.order("image_upload_updated_at DESC").first %>
+<% if @post %>
+	<h4 class="description">Here is our newest submission!</h4>
+	<%= image_tag @post.image_upload.url %>
+	<h4 class="description"><%= @post.description %></h4>
+<% end %>
+
