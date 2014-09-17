@@ -5,7 +5,7 @@ describe "clicking links on the navbar" do
   it "should take you back to the root when the brand is clicked on." do
     visit 'signup'
     click_link 'Pictures of You'
-    expect(page).to have_content "I've been staring so long at these..."
+    expect(page).to have_content "Pictures of You"
   end
 
   it "should take you to signup when you click the Sign Up link." do
