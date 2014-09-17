@@ -11,10 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140917072955) do
+ActiveRecord::Schema.define(version: 20140917074846) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "favorites", force: true do |t|
+    t.integer  "post_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "posts", force: true do |t|
     t.string   "description"
@@ -23,7 +30,6 @@ ActiveRecord::Schema.define(version: 20140917072955) do
     t.integer  "image_upload_file_size"
     t.datetime "image_upload_updated_at"
     t.integer  "user_id"
-    t.integer  "favorite"
   end
 
   create_table "users", force: true do |t|
