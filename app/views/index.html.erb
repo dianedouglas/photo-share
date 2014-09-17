@@ -13,6 +13,6 @@
 	<h4 class="description">Here is our newest submission!</h4>
 	<%= image_tag @post.image_upload.url %>
 	<h4 class="description"><%= @post.description %></h4>
-	<%= link_to "Favorite!", new_user_post_path(current_user.id), :class => "btn btn-success" %>
+	<%= link_to "Favorite!", post_path(@post.id), :data => {:method => "patch"}, :class => "btn btn-success favorite" %>
 <% end %>
 
