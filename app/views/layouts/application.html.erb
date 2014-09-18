@@ -9,9 +9,9 @@
 </head>
 <body>
 <div class="container">
-  <%= render 'layouts/navbar' %>
   <%= flash[:alert] %>
   <%= flash[:notice] %>
+  <%= render 'layouts/navbar' %>
   <%= yield %>
 </div>
 </body>
