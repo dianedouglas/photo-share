@@ -20,3 +20,13 @@ img {
   text-align: center;
 }
 
+.favorite {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 10%;
+}
+
+.photo-separator {
+  width: 50%;
+}
