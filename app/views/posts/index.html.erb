@@ -6,7 +6,15 @@
 <% end %>
 <br>
 <hr>
+
 <% @posts.each do |post| %>
   <%= image_tag post.image_upload.url %>
   <h4 class="description"><%= post.description %></h4>
+  <% if current_user %>
+    <% fave = Favorite.find_by(post_id: post.id) %>
+    <% if fave %>
+    <% else %>
+    <%= link_to "Favorite!", post_path(post.id), :data => {:method => "patch"}, :class => "btn btn-success favorite text-center" %>
+    <% end %>
+  <% end %>
 <% end %>
