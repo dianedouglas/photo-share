@@ -2,8 +2,9 @@
 
   <%= link_to "Post a Photo!", new_user_post_path(current_user.id), :class => "btn btn-success" %>
 
-  <%= link_to "View all Posts!", user_posts_path(current_user.id), :class => "btn btn-success" %>
+  <%= link_to "View all Your Posts!", user_posts_path(current_user.id), :class => "btn btn-success" %>
 
+  <%= link_to "View all Posts From Everyone!", posts_path, :class => "btn btn-success" %>
 <hr>
 <h4>Your Favorite Posts From the Community</h4>
 <hr>

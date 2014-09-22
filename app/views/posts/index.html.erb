@@ -1,20 +1,37 @@
 <% if current_user %>
-<h1>Pictures from you: <%=current_user.email%></h1>
+  <h1>Pictures from you: <%=current_user.email%></h1>
   <%= link_to "Post another Photo!", new_user_post_path(current_user.id), :class => "btn btn-success" %>
 <% else %>
-<h1>Pictures of You: View All Pictures</h1>
+  <h1>Pictures of You: View All Pictures</h1>
 <% end %>
 <br>
 <hr>
 
-<% @posts.each do |post| %>
-  <%= image_tag post.image_upload.url %>
-  <h4 class="description"><%= post.description %></h4>
-  <% if current_user %>
-    <% fave = Favorite.find_by(post_id: post.id) %>
-    <% if fave %>
-    <% else %>
-    <%= link_to "Favorite!", post_path(post.id), :data => {:method => "patch"}, :class => "btn btn-success favorite text-center" %>
-    <% end %>
+<% favorited_post_ids = [] %>
+
+<% if current_user %>
+
+  <% posts_favorited_by_user = Favorite.where(user_id: current_user.id) %>
+  <% posts_favorited_by_user.each do |fave| %>
+    <%= image_tag fave.post.image_upload.url %>
+    <h4 class="description"><%= fave.post.description %></h4>
+    <%= link_to "Un-Favorite!", post_path(fave.id), :data => {:method => "patch"}, :class => "btn btn-warning favorite text-center" %>
+    <% favorited_post_ids << fave.post_id %>
   <% end %>
+
+<% end %>
+
+<% @posts.each do |post| %>
+
+  <% if !favorited_post_ids.include? post.id %>
+
+    <%= image_tag post.image_upload.url %>
+    <h4 class="description"><%= post.description %></h4>
+
+    <% if current_user %>
+      <%= link_to "Favorite!", post_path(post.id), :data => {:method => "patch"}, :class => "btn btn-success favorite text-center" %>
+    <% end %>
+
+  <% end %>
+
 <% end %>
