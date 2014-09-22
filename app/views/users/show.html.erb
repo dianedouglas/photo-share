@@ -3,3 +3,18 @@
   <%= link_to "Post a Photo!", new_user_post_path(current_user.id), :class => "btn btn-success" %>
 
   <%= link_to "View all Posts!", user_posts_path(current_user.id), :class => "btn btn-success" %>
+
+<hr>
+<h4>Your Favorite Posts From the Community</h4>
+<hr>
+<br>
+<% @posts = [] %>
+
+<% current_user.favorites.each do |favorite| %>
+  <% @posts << Post.find(favorite.post_id) %>
+<% end %>
+
+<% @posts.each do |post| %>
+  <%= image_tag post.image_upload.url %>
+  <h4 class="description"><%= post.description %></h4>
+<% end %>
