@@ -6,11 +6,11 @@ Rails.application.routes.draw do
   get 'login', to: 'sessions#new', as: 'login'
   get 'logout', to: 'sessions#destroy', as: 'logout'
 
-  resources :users do
-  	resources :posts
+  resources :users, :only => [:new, :create, :show] do
+  	resources :posts, :only => [:new, :index]
   end
-  resources :posts
-  resources :sessions
-  resources :favorites
+  resources :posts, :only => [:index, :create]
+  resources :sessions, :only => [:new, :create, :destroy]
+  resources :favorites, :only => [:destroy, :create]
 
 end
