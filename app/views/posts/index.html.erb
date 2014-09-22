@@ -15,7 +15,7 @@
   <% posts_favorited_by_user.each do |fave| %>
     <%= image_tag fave.post.image_upload.url %>
     <h4 class="description"><%= fave.post.description %></h4>
-    <%= link_to "Un-Favorite!", post_path(fave.id), :data => {:method => "patch"}, :class => "btn btn-warning favorite text-center" %>
+    <%= link_to "Un-Favorite!", favorite_path(id: fave.id), :data => {:method => "delete"}, :class => "btn btn-warning favorite text-center" %>
     <% favorited_post_ids << fave.post_id %>
   <% end %>
 
@@ -29,7 +29,7 @@
     <h4 class="description"><%= post.description %></h4>
 
     <% if current_user %>
-      <%= link_to "Favorite!", post_path(post.id), :data => {:method => "patch"}, :class => "btn btn-success favorite text-center" %>
+      <%= link_to "Favorite!", favorites_path(post_id: post.id), :data => {:method => "post"}, :class => "btn btn-success favorite text-center" %>
     <% end %>
 
   <% end %>

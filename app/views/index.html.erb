@@ -16,7 +16,7 @@
 
   <% if current_user %>
     <% fave = Favorite.where(post_id: @post.id, user_id: current_user.id) %>
-    <% if fave %>
+    <% if fave != [] %>
       <%= link_to "Un-Favorite!", post_path(@post.id), :data => {:method => "patch"}, :class => "btn btn-warning favorite text-center" %>
     <% else %>
       <%= link_to "Favorite!", post_path(@post.id), :data => {:method => "patch"}, :class => "btn btn-success favorite text-center" %>

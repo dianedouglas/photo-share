@@ -24,15 +24,6 @@ class PostsController <  ApplicationController
     end
   end
 
-  def update
-    @post = Post.find(params[:id])
-    @favorite = Favorite.new(user_id: @post.user_id, post_id: @post.id)
-    if @favorite.save
-      flash[:notice] = "Favorited!"
-    end
-    redirect_to root_path
-  end
-
   private
   def post_params
     params.require(:post).permit(:image_upload, :description).merge({user_id: current_user.id})
