@@ -1,9 +1,13 @@
-<% if current_user %>
+<% if params[:user_id] %>
   <h1>Pictures from you: <%=current_user.email%></h1>
-  <%= link_to "Post another Photo!", new_user_post_path(current_user.id), :class => "btn btn-success" %>
 <% else %>
-  <h1>Pictures of You: View All Pictures</h1>
+  <h1>All Pictures</h1>
 <% end %>
+
+<% if current_user %>
+  <%= link_to "Post another Photo!", new_user_post_path(current_user.id), :class => "btn btn-success" %>
+<% end %>
+
 <br>
 <hr>
 
