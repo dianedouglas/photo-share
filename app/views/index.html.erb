@@ -13,8 +13,14 @@
 	<h4 class="description">Here is our newest submission!</h4>
 	<%= image_tag @post.image_upload.url %>
 	<h4 class="description"><%= @post.description %></h4>
-	<div id="favorite-link">
-  <%= link_to "Favorite!", post_path(@post.id), :data => {:method => "patch"}, :class => "btn btn-success favorite text-center" %>
-  </div>
+
+  <% if current_user %>
+    <% fave = Favorite.where(post_id: @post.id, user_id: current_user.id) %>
+    <% if fave %>
+      <%= link_to "Un-Favorite!", post_path(@post.id), :data => {:method => "patch"}, :class => "btn btn-warning favorite text-center" %>
+    <% else %>
+      <%= link_to "Favorite!", post_path(@post.id), :data => {:method => "patch"}, :class => "btn btn-success favorite text-center" %>
+    <% end %>
+  <% end %>
 <% end %>
 
