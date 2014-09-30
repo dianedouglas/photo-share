@@ -2,12 +2,15 @@ require 'rails_helper'
 
 describe "new post form page" do
 
-  it "should post a photo and go to the user posts page if the fields are both filled in." do
+  before(:each) do
     visit 'login'
     user = User.create(:email => 'user@example.com', :password => 'password', :password_confirmation => 'password')
     fill_in 'Email', :with => 'user@example.com'
     fill_in 'Password', :with => 'password'
     click_button 'Log In'
+  end
+
+  it "should post a photo and go to the user posts page if the fields are both filled in." do
     click_link 'Post a Photo'
     expect(page).to have_content "New Post"
     fill_in 'post_description', :with => 'my photo'
@@ -17,11 +20,6 @@ describe "new post form page" do
   end
 
   it "should allow a user to post a photo either from the home page or their profile page, if signed in." do
-    visit 'login'
-    user = User.create(:email => 'user@example.com', :password => 'password', :password_confirmation => 'password')
-    fill_in 'Email', :with => 'user@example.com'
-    fill_in 'Password', :with => 'password'
-    click_button 'Log In'
     click_link 'Post a Photo!'
     expect(page).to have_content "New Post"
     click_link 'Pictures of You'
@@ -30,11 +28,6 @@ describe "new post form page" do
   end
 
   it "should allow you to favorite your photos after posting." do
-    visit 'login'
-    user = User.create(:email => 'user@example.com', :password => 'password', :password_confirmation => 'password')
-    fill_in 'Email', :with => 'user@example.com'
-    fill_in 'Password', :with => 'password'
-    click_button 'Log In'
     click_link 'Post a Photo'
     expect(page).to have_content "New Post"
     fill_in 'post_description', :with => 'my photo'
@@ -47,12 +40,6 @@ describe "new post form page" do
   end
 
   it "should allow you to favorite other people's photos." do
-    visit 'login'
-    user = User.create(:email => 'user@example.com', :password => 'password', :password_confirmation => 'password')
-    fill_in 'Email', :with => 'user@example.com'
-    fill_in 'Password', :with => 'password'
-    click_button 'Log In'
-
     click_link 'Post a Photo'
     expect(page).to have_content "New Post"
     fill_in 'post_description', :with => 'my photo'
@@ -73,12 +60,6 @@ describe "new post form page" do
   end
 
   it "should allow you to favorite the newest submission on the home page." do
-    visit 'login'
-    user = User.create(:email => 'user@example.com', :password => 'password', :password_confirmation => 'password')
-    fill_in 'Email', :with => 'user@example.com'
-    fill_in 'Password', :with => 'password'
-    click_button 'Log In'
-
     click_link 'Post a Photo'
     expect(page).to have_content "New Post"
     fill_in 'post_description', :with => 'my photo'
