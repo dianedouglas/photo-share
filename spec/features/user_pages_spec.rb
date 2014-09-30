@@ -24,4 +24,14 @@ describe 'user signed in actions' do
     expect(page).to have_content "Pictures from you"
   end
 
+  it 'should allow users to view all photos from all users.' do
+    visit 'login'
+    user = User.create(:email => 'user@example.com', :password => 'password', :password_confirmation => 'password')
+    fill_in 'Email', :with => 'user@example.com'
+    fill_in 'Password', :with => 'password'
+    click_button 'Log In'
+    click_link 'View all Posts From Everyone!'
+    expect(page).to have_content "All Pictures"
+  end
+
 end
