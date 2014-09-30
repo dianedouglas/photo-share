@@ -13,13 +13,19 @@
 
 <% favorited_post_ids = [] %>
 
+<% if request.original_url.include?("users") %>
+  <% @request_from = "user_posts" %>
+<% else %>
+  <% @request_from = "index_posts" %>
+<% end %>
+
 <% if current_user %>
 
   <% posts_favorited_by_user = Favorite.where(user_id: current_user.id) %>
   <% posts_favorited_by_user.each do |fave| %>
     <%= image_tag fave.post.image_upload.url %>
     <h4 class="description"><%= fave.post.description %></h4>
-    <%= link_to "Un-Favorite!", favorite_path(id: fave.id), :data => {:method => "delete"}, :class => "btn btn-warning favorite text-center" %>
+    <%= link_to "Un-Favorite!", favorite_path(id: fave.id, from: @request_from), :data => {:method => "delete"}, :class => "btn btn-warning favorite text-center" %>
     <% favorited_post_ids << fave.post_id %>
     <br>
     <hr class="photo-separator">
@@ -36,7 +42,7 @@
     <h4 class="description"><%= post.description %></h4>
 
     <% if current_user %>
-      <%= link_to "Favorite!", favorites_path(post_id: post.id), :data => {:method => "post"}, :class => "btn btn-success favorite text-center" %>
+      <%= link_to "Favorite!", favorites_path(post_id: post.id, from: @request_from), :data => {:method => "post"}, :class => "btn btn-success favorite text-center" %>
     <% end %>
     <br>
     <hr class="photo-separator">

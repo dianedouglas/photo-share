@@ -5,12 +5,24 @@ class FavoritesController <  ApplicationController
     if @favorite.save
       flash[:notice] = "Favorited!"
     end
-    redirect_to root_path
+    if params[:from] == "user_posts"
+      redirect_to user_posts_path(current_user.id)
+    elsif params[:from] == "index_posts"
+      redirect_to posts_path
+    else
+      redirect_to root_path
+    end
   end
 
   def destroy
     Favorite.destroy(params[:id])
-    redirect_to root_path
+    if params[:from] == "user_posts"
+      redirect_to user_posts_path(current_user.id)
+    elsif params[:from] == "index_posts"
+      redirect_to posts_path
+    else
+      redirect_to root_path
+    end
   end
 
 end
