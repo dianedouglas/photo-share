@@ -14,6 +14,7 @@ gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
 gem 'capybara'
 gem 'launchy'
 gem 'pry'
+gem 'rails_12factor'
 
 group :development do
   gem 'better_errors'
